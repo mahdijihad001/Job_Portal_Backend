@@ -1,3 +1,7 @@
+import dotEnv from "dotenv";
+
+dotEnv.config();
+
 interface IEnv{
     MONGO_URI : string,
     PORT : string,
