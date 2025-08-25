@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 import { IActive, IUser, Role } from "./userInterfaces";
+import bcrypt from "bcryptjs";
 
 const userSchema = new Schema<IUser>({
     userName: {
@@ -38,8 +39,20 @@ const userSchema = new Schema<IUser>({
     isVerifid: {
         type: Boolean,
         default: false
+    },
+    picture: {
+        type: String
     }
 }, { timestamps: true, versionKey: false });
 
+// Hashing password
+userSchema.pre("save", async function (next) {
+
+    if (!this.isModified("password")) return next();
+
+    this.password = await bcrypt.hash(this.password, 10);
+
+    next();
+})
 
 export const User = model<IUser>("User", userSchema);
