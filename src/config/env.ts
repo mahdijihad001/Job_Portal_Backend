@@ -10,12 +10,16 @@ interface IEnv {
         CLOUDINARY_CLOUD_NAME: string,
         CLOUDINARY_API_KEY: string,
         CLOUDINARY_API_SECRATE: string
+    },
+    JWT: {
+        ACCESS_SECRATE: string,
+        REFRESH_SECRATE: string
     }
 };
 
 
 const lodaEnvironmentVariables = (): IEnv => {
-    const requiredEnv = ["MONGO_URI", "PORT", "NODE_ENVIRONMENT", "CLOUDINARY_CLOUD_NAME", "CLOUDINARY_API_KEY", "CLOUDINARY_API_SECRATE"];
+    const requiredEnv = ["MONGO_URI", "PORT", "NODE_ENVIRONMENT", "CLOUDINARY_CLOUD_NAME", "CLOUDINARY_API_KEY", "CLOUDINARY_API_SECRATE", "ACCESS_SECRATE", "REFRESH_SECRATE"];
 
     requiredEnv.forEach((key) => {
         if (!process.env[key]) {
@@ -31,6 +35,10 @@ const lodaEnvironmentVariables = (): IEnv => {
             CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
             CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
             CLOUDINARY_API_SECRATE: process.env.CLOUDINARY_API_SECRATE as string
+        },
+        JWT: {
+            ACCESS_SECRATE: process.env.ACCESS_SECRATE as string,
+            REFRESH_SECRATE: process.env.REFRESH_SECRATE as string
         }
     }
 };

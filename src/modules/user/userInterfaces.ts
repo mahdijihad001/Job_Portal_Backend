@@ -11,13 +11,15 @@ export enum IActive{
 }
 
 export interface IUser{
+    __id ? : string,
     userName : string,
     email : string,
     password : string,
     phone : string,
-    address : string,
+    address ?: string,
     role : Role,
-    isVerifid : boolean,
+    isVerifid ?: boolean,
     isDeleted : boolean,
-    isActive : IActive
+    isActive : IActive,
+    picture? : string
 }

@@ -14,7 +14,8 @@ export const createUserZodSchema = z.object({
     phone: z.string()
         .regex(/^(?:\+?880|0)(13|14|15|16|17|18|19)[0-9]{8}$/, { message: "Invalid number formate. Please try valid bangladashi number" })
         .optional(),
-    address: z.string().optional()
+    address: z.string().optional(),
+    picture: z.string().optional(),
 });
 
 export const updateUserZodSchema = z.object({
@@ -30,5 +31,6 @@ export const updateUserZodSchema = z.object({
         .regex(/^(?:\+?880|0)(13|14|15|16|17|18|19)[0-9]{8}$/, { message: "Invalid number formate. Please try valid bangladashi number" })
         .optional(),
     address: z.string().optional(),
-    role: z.enum(Object.values(Role) as [string]).optional()
+    role: z.enum(Object.values(Role) as [string]).optional(),
+    picture: z.string().optional(),
 });
